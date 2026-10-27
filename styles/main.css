@@ -78,6 +78,14 @@ h1 em { display: inline; }
 .little-line { width: 32px; height: 1px; background: var(--berry); }
 .cover-footnote { margin: 53px 0 0; color: var(--muted); font-size: .53rem; letter-spacing: .14em; }
 .envelope-scene { position: relative; isolation: isolate; display: flex; align-items: center; flex-direction: column; padding: 165px 0 0; min-width: 0; }
+.envelope-scene > #open-intro,
+.envelope-scene > #skip-intro { position: relative; z-index: 20; pointer-events: auto; }
+.envelope-scene .scene-star,
+.envelope-scene .scene-petal,
+.envelope-scene .envelope-annotation,
+.envelope-scene .tiny-note,
+.envelope-scene .envelope,
+.envelope-scene .keepsake-cover { pointer-events: none; }
 .envelope { width: min(100%, 370px); aspect-ratio: 1.43; position: relative; margin: 0 auto 56px; transform: rotate(-7deg); filter: drop-shadow(0 22px 18px #7852431b); animation: envelope-float 6s ease-in-out infinite; }
 .envelope-back { position: absolute; inset: 0; background: #ddbac0; border-radius: 3px; }
 .envelope-letter { position: absolute; z-index: 1; width: 84%; height: 90%; left: 8%; top: 7%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; background: #fffaf2; border: 1px solid #d8bfa555; transform: translateY(0); transition: transform .85s .4s; }
