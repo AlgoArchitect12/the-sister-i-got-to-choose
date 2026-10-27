@@ -23,7 +23,7 @@ The Birthday directory had no Git repository, parent repository, remote, or prio
 
 ### Remaining limits
 
-The recipient name and optional captions remain editable placeholders. Physical devices, Safari, Firefox, and assistive-technology software were not tested. Mobile checks used resized Chromium viewports. The historical audio suite was not executed because this is a photo-only gift.
+The recipient is now personalized as Dee (pet name), with Dhruti Karushkar shown as her real name. Optional photo captions remain empty and editable. The personalized cover title and “from a stranger to my bestest friend…” dedication were updated in the follow-up commits; the GitHub Pages build/deploy jobs completed successfully for the latest cover wording. The full browser suites recorded above were run before these wording changes and have not been rerun for the personalized heading. Physical devices, Safari, Firefox, and assistive-technology software were not tested. Mobile checks used resized Chromium viewports. The historical audio suite was not executed because this is a photo-only gift.
 
 ## Earlier photograph integration record
 
