@@ -3,12 +3,16 @@
 async (page) => {
   const assert = (condition, message) => { if (!condition) throw new Error(message); };
   const errors = [];
+  const consoleErrors = [];
   const failedResponses = [];
   const failedRequests = [];
+  const scriptResponses = [];
   const mediaRequests = [];
   const onError = (error) => errors.push(error.message);
+  const onConsole = (message) => { if (message.type() === "error") consoleErrors.push(message.text()); };
   const onResponse = (response) => {
     if (response.status() >= 400) failedResponses.push(`${response.status()} ${response.url()}`);
+    if (/\/scripts\/(?:config|main)\.js$/.test(response.url())) scriptResponses.push({ url: response.url(), status: response.status() });
   };
   const onFailedRequest = (request) => failedRequests.push(request.url());
   const onRequest = (request) => {
@@ -16,13 +20,83 @@ async (page) => {
   };
   await page.setViewportSize({ width: 1440, height: 960 });
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await page.goto("http://127.0.0.1:8000");
   page.on("pageerror", onError);
+  page.on("console", onConsole);
   page.on("response", onResponse);
   page.on("requestfailed", onFailedRequest);
   page.on("request", onRequest);
   try {
+    const openingChecks = [];
+    for (const reducedMotion of ["no-preference", "reduce"]) {
+      for (const width of [320, 390, 768, 1440]) {
+        await page.setViewportSize({ width, height: 900 });
+        await page.emulateMedia({ reducedMotion });
+        await page.goto("http://127.0.0.1:8000");
+        const configReady = await page.evaluate(() => window.BIRTHDAY_CONFIG?.petName === "Dee" && window.BIRTHDAY_CONFIG?.realName === "Dhruti Karushkar");
+        assert(configReady, `Scripts/configuration did not load at ${width}px with ${reducedMotion}`);
+        if (!openingChecks.length) {
+          const cdp = await page.context().newCDPSession(page);
+          try {
+            const { result } = await cdp.send("Runtime.evaluate", { expression: "document.querySelector('#open-intro')" });
+            const { listeners } = await cdp.send("DOMDebugger.getEventListeners", { objectId: result.objectId });
+            assert(listeners.some((listener) => listener.type === "click"), "Opening button click handler was not registered");
+          } finally {
+            await cdp.detach();
+          }
+        }
+        for (const selector of ["#open-intro", "#skip-intro"]) {
+          const button = page.locator(selector);
+          await button.scrollIntoViewIfNeeded();
+          const layout = await page.evaluate((buttonSelector) => {
+            const title = document.querySelector("#cover-title").getBoundingClientRect();
+            const element = document.querySelector(buttonSelector);
+            const rect = element.getBoundingClientRect();
+            const hit = document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2);
+            const style = getComputedStyle(element);
+            return {
+              scrollWidth: document.documentElement.scrollWidth,
+              clientWidth: document.documentElement.clientWidth,
+              visible: rect.width > 0 && rect.height > 0 && style.visibility !== "hidden" && style.display !== "none",
+              overlapsTitle: rect.left < title.right && rect.right > title.left && rect.top < title.bottom && rect.bottom > title.top,
+              receivesPointer: hit === element || element.contains(hit)
+            };
+          }, selector);
+          assert(layout.scrollWidth <= layout.clientWidth + 1, `Horizontal overflow at ${width}px: ${JSON.stringify(layout)}`);
+          assert(layout.visible && !layout.overlapsTitle && layout.receivesPointer, `${selector} is obscured or overlaps the cover heading at ${width}px: ${JSON.stringify(layout)}`);
+        }
+        const errorCount = errors.length;
+        const started = Date.now();
+        await page.locator("#open-intro").click({ timeout: 1500 });
+        await page.locator("#experience").waitFor({ state: "visible", timeout: 2000 });
+        const elapsed = Date.now() - started;
+        const state = await page.evaluate(() => ({
+          introHidden: document.querySelector("#intro").hidden,
+          experienceHidden: document.querySelector("#experience").hidden,
+          birthdayVisible: !document.querySelector("#birthday").hidden,
+          navigationVisible: !document.querySelector(".chapter-nav").hidden
+        }));
+        assert(elapsed <= 2000, `Opening took ${elapsed}ms at ${width}px with ${reducedMotion}`);
+        assert(state.introHidden && !state.experienceHidden && state.birthdayVisible && state.navigationVisible, `Opening transition incomplete at ${width}px with ${reducedMotion}: ${JSON.stringify(state)}`);
+        assert(errors.length === errorCount, `JavaScript error while opening at ${width}px with ${reducedMotion}: ${errors.slice(errorCount).join("; ")}`);
+        openingChecks.push({ width, reducedMotion, elapsed });
+      }
+    }
+    for (const file of ["config.js", "main.js"]) {
+      assert(scriptResponses.some((response) => response.url.endsWith(`/scripts/${file}`) && response.status < 400), `scripts/${file} did not load successfully`);
+    }
+
+    await page.setViewportSize({ width: 390, height: 900 });
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.goto("http://127.0.0.1:8000");
     await page.reload();
+    await page.locator("#skip-intro").click({ timeout: 1500 });
+    await page.locator("#experience").waitFor({ state: "visible", timeout: 2000 });
+    assert(await page.locator("#intro").isHidden(), "Skip intro did not hide the cover");
+    assert(await page.locator(".chapter-nav").isVisible(), "Skip intro did not reveal chapter navigation");
+
+    await page.setViewportSize({ width: 1440, height: 960 });
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.goto("http://127.0.0.1:8000");
     const content = await page.evaluate(() => ({
       title: window.BIRTHDAY_CONFIG.siteTitle,
       notes: window.BIRTHDAY_CONFIG.appreciation.notes.length,
@@ -40,7 +114,7 @@ async (page) => {
     assert(mediaRequests.every((url) => content.imageURLs.includes(url)), "The gift requested audio or an unconfigured image");
 
     await page.locator("#open-intro").click();
-    await page.locator("#experience").waitFor({ state: "visible" });
+    await page.locator("#experience").waitFor({ state: "visible", timeout: 2000 });
     assert(await page.locator("#intro").isHidden(), "Opening did not transition into the book");
     assert(await page.locator(".confetti-piece").count() > 0, "Opening celebration did not produce confetti");
     await page.locator("#replay-button").click();
@@ -160,10 +234,12 @@ async (page) => {
     assert(await page.locator("#cake-button").isEnabled(), "Replay did not restore the cake");
     assert(mediaRequests.every((url) => content.imageURLs.includes(url)), `Unexpected image or audio request: ${mediaRequests.filter((url) => !content.imageURLs.includes(url)).join(", ")}`);
     assert(errors.length === 0, `Browser JavaScript errors: ${errors.join("; ")}`);
+    assert(consoleErrors.length === 0, `Browser console errors: ${consoleErrors.join("; ")}`);
     assert(failedResponses.length === 0 && failedRequests.length === 0, `Network failures: ${[...failedResponses, ...failedRequests].join("; ")}`);
-    return { passed: true, chapters: order.length, photographsDecoded: decodedPhotos.length, appreciationNotes: content.notes, letterParagraphs: content.letterLines, letters: notes.length, quizQuestions: content.questions, discoveries: content.eggs.length, navigationLinks: navigation.length, responsiveWidths: widths, pageErrors: errors, failedResponses, failedRequests, mediaRequests };
+    return { passed: true, openingChecks, chapters: order.length, photographsDecoded: decodedPhotos.length, appreciationNotes: content.notes, letterParagraphs: content.letterLines, letters: notes.length, quizQuestions: content.questions, discoveries: content.eggs.length, navigationLinks: navigation.length, responsiveWidths: widths, pageErrors: errors, consoleErrors, scriptResponses, failedResponses, failedRequests, mediaRequests };
   } finally {
     page.off("pageerror", onError);
+    page.off("console", onConsole);
     page.off("response", onResponse);
     page.off("requestfailed", onFailedRequest);
     page.off("request", onRequest);

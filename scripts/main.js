@@ -49,14 +49,14 @@
     }
   }
 
-  $(".recipient-name").forEach((node) => { node.textContent = recipient; });
+  $$(".recipient-name").forEach((node) => { node.textContent = recipient; });
   const realNameLabel = $("#recipient-real-name");
   if (realNameLabel) {
     realNameLabel.textContent = config.realName || "";
     const realNameWrap = realNameLabel.closest(".recipient-real-name-wrap");
     if (realNameWrap) realNameWrap.hidden = !config.realName;
   }
-  $(".sender-name").forEach((node) => { node.textContent = config.senderName; });
+  $$(".sender-name").forEach((node) => { node.textContent = config.senderName; });
   $("#sender-signature").textContent = config.senderSignature;
   $("[data-config='greeting']").textContent = config.greeting;
   $("#ending-heading").textContent = config.ending.heading;
