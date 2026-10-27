@@ -235,15 +235,28 @@
     if (opening) return;
     opening = true;
     void startMusic();
-    $("#intro-envelope").classList.add("is-opening");
-    $("#open-intro").disabled = true;
-    $("#intro-message").hidden = false;
-    $("#intro-line").textContent = config.intro.lines[0] || "A little surprise, just for you.";
-    later(() => { $("#intro-line").textContent = config.intro.lines[1] || config.intro.lines[0]; }, motion.matches ? 250 : 1000);
-    later(() => { $("#intro-name").textContent = `For you, ${recipient}. ♡`; }, motion.matches ? 500 : 1800);
-    later(enterExperience, motion.matches ? 900 : 3200);
+
+    const openButton = $("#open-intro");
+    const envelope = $("#intro-envelope");
+    const introMessage = $("#intro-message");
+    const introLine = $("#intro-line");
+    const introName = $("#intro-name");
+
+    if (envelope) envelope.classList.add("is-opening");
+    if (openButton) openButton.disabled = true;
+    if (introMessage) introMessage.hidden = false;
+    if (introLine) introLine.textContent = config.intro.lines[0] || "A little surprise, just for you.";
+    if (introName) introName.textContent = `For you, ${recipient}. ♡`;
+
+    // Keep the reveal responsive; the envelope animation has its own CSS timing.
+    // Reduced-motion users move straight into the birthday chapters.
+    later(enterExperience, motion.matches ? 80 : 950);
   });
-  $("#skip-intro").addEventListener("click", () => { void startMusic(); enterExperience(); });
+  $("#skip-intro").addEventListener("click", () => {
+    opening = true;
+    void startMusic();
+    enterExperience();
+  });
 
   $("#cake-button").addEventListener("click", () => {
     $("#cake-button").classList.add("is-blown");
