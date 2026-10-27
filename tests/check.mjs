@@ -14,6 +14,11 @@ new vm.Script(configSource).runInContext(context);
 new vm.Script(main);
 const config = context.window.BIRTHDAY_CONFIG;
 assert.ok(config, "One editable configuration must be present");
+assert.equal(config.petName, "Dee", "The recipient pet name must be Dee");
+assert.equal(config.recipientName, "Dee", "The visible recipient name must be Dee");
+assert.equal(config.realName, "Dhruti Karushkar", "The configured real name must be present");
+assert.ok(config.intro.coverMessage.includes("From a stranger to my bestest friend"), "The opening dedication must describe the friendship journey");
+assert.ok(Array.isArray(config.coverTitleLines) && config.coverTitleLines.map((line) => typeof line === "string" ? line : line.text).join(" ").includes("bestest friend"), "The expanded cover title must be configured");
 for (const key of ["siteTitle", "recipientName", "senderName", "senderSignature", "nickname", "greeting"]) {
   assert.equal(typeof config[key], "string", `${key} must be text`);
 }
