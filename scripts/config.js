@@ -14,7 +14,7 @@ window.BIRTHDAY_CONFIG = {
     { text: "and of course," },
     { text: "the best part" },
     { text: "of my life" },
-    { text: "I got to choose.", emphasis: true }
+    { text: "that I got to choose.", emphasis: true }
   ],
   senderName: "Dharmin",
   senderSignature: "Dharmin Mistry",
