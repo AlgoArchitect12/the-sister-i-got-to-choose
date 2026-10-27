@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f4eb">
+  <meta name="description" content="Not by blood, but by bond. A little birthday magic for the sister I got to choose.">
+  <title>The Sister I Got to Choose · A Birthday Gift</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='50'%3E🎀%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="scripts/config.js" defer></script>
+  <script src="scripts/main.js" defer></script>
+</head>
+<body class="intro-active">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="The sister I got to choose, return to top"><span class="brand-flower" aria-hidden="true">✳</span><span>for my chosen sister<span class="brand-dot">.</span></span></a>
+    <nav class="chapter-nav" aria-label="Birthday chapters" hidden>
+      <a href="#birthday">The wish</a><a href="#heart">My letter</a><a href="#memories">Our book</a><a href="#appreciation">Little things</a><a href="#chaos">Sister by heart</a><a href="#letters">Open when</a><a href="#finale">One last wish</a>
+    </nav>
+    <span class="header-note">a little gift, a lot of heart <span aria-hidden="true">♡</span></span>
+    <button class="music-toggle" id="music-toggle" type="button" hidden aria-pressed="false" aria-label="Birthday music" aria-describedby="music-status"><span aria-hidden="true">♫</span><span id="music-label">Music</span></button>
+    <p id="music-status" class="music-status" role="status" hidden></p>
+  </header>
+
+  <main id="main-content">
+    <section id="intro" class="intro" aria-labelledby="cover-title">
+      <div class="intro-grain" aria-hidden="true"></div>
+      <div class="cover-copy">
+        <p class="eyebrow"><span aria-hidden="true">✦</span> A LITTLE BOOK OF CHOSEN FAMILY</p>
+        <h1 id="cover-title">The sister<br>I got to <em>choose.</em></h1>
+        <p class="cover-description" id="cover-message">A little birthday keepsake, made just for you.</p>
+        <p class="cover-recipient">For <span class="recipient-name">birthday girl</span>, with a little birthday magic.</p>
+        <div class="cover-dedication"><span class="little-line" aria-hidden="true"></span><span>For you, my sister by heart.</span></div>
+        <p class="cover-footnote">A BIRTHDAY. A LITTLE CHAOS. A WHOLE LOT OF LOVE.</p>
+      </div>
+      <div class="envelope-scene">
+        <div class="keepsake-cover" aria-hidden="true"><span class="cover-binding"></span><span class="book-edition">A BIRTHDAY KEEPSAKE</span><span class="book-label">little pages.<br>big feelings.</span><span class="book-ribbon"></span><span class="book-corner">✦</span></div>
+        <span class="scene-star star-one" aria-hidden="true">✧</span><span class="scene-star star-two" aria-hidden="true">✦</span><span class="scene-star star-three" aria-hidden="true">✧</span>
+        <span class="scene-petal petal-one" aria-hidden="true"></span><span class="scene-petal petal-two" aria-hidden="true"></span>
+        <div class="tiny-note" aria-hidden="true">some things are<br>better together <span>♡</span></div>
+        <div class="envelope" id="intro-envelope" aria-hidden="true">
+          <div class="envelope-back"></div>
+          <div class="envelope-letter"><span class="letter-tiny">A LITTLE NOTE FOR YOU</span><span class="letter-script">You are so<br>very celebrated.</span><span class="letter-mini-heart">♡</span></div>
+          <div class="envelope-front"></div><div class="envelope-flap"></div>
+          <div class="envelope-inscription">For someone who<br>became family 💌</div><span class="wax-seal">♡</span>
+        </div>
+        <span class="handwritten envelope-annotation" aria-hidden="true">psst… this one's for you ↗</span>
+        <button id="open-intro" class="button button-primary" type="button">Open your surprise <span aria-hidden="true">✧</span></button>
+        <button id="skip-intro" class="text-button skip-intro" type="button">Skip intro <span aria-hidden="true">↗</span></button>
+        <div class="intro-message" id="intro-message" role="status" aria-live="polite" hidden><p id="intro-line"></p><strong id="intro-name"></strong></div>
+      </div>
+      <div class="cover-bottom"><span>A ONE-OF-A-KIND HUMAN DESERVES A ONE-OF-A-KIND DAY.</span><span class="handwritten">sealed with a little love ♡</span><span>EST. IN FRIENDSHIP <span aria-hidden="true">✦</span></span></div>
+    </section>
+
+    <div id="experience" hidden>
+      <div class="journey-bar"><div><p class="eyebrow">A LITTLE BOOK ABOUT US</p><p>Seven chapters. One very lucky friendship.</p></div><button class="discovery-toggle text-button" id="discovery-toggle" type="button" aria-haspopup="dialog">Little things to find <span id="discovery-count">0 / 3</span> <span aria-hidden="true">↗</span></button></div>
+      <section id="birthday" class="chapter birthday-chapter" aria-labelledby="birthday-title">
+        <div class="chapter-top"><p class="eyebrow">01 / A DAY THAT'S ALL YOURS</p><span class="handwritten">make a wish, birthday girl ✧</span></div>
+        <div class="birthday-layout">
+          <div class="birthday-copy"><span class="small-tag">THE WORLD IS A LITTLE LUCKIER WITH YOU IN IT</span><h2 id="birthday-title"><span data-config="greeting">Happiest birthday</span>,<br><em class="recipient-name">birthday girl</em><span class="title-sparkle" aria-hidden="true">✦</span></h2><div id="birthday-description" class="body-copy"></div><button class="button button-outline" id="wish-button" type="button">Make a little birthday wish <span aria-hidden="true">✧</span></button><p class="wish-message" id="wish-message" role="status" hidden></p></div>
+          <div class="cake-scene"><div class="birthday-orbit" aria-hidden="true"><span>ANOTHER YEAR OF WONDERFULLY YOU</span><i>✧</i></div><span class="cake-star cake-star-one" aria-hidden="true">✦</span><span class="cake-star cake-star-two" aria-hidden="true">✧</span><button class="cake-button" id="cake-button" type="button" aria-label="Blow out the birthday candles"><span class="cake-art" aria-hidden="true"><span class="candles"><span class="candle"><i class="flame"></i></span><span class="candle"><i class="flame"></i></span><span class="candle"><i class="flame"></i></span><span class="candle"><i class="flame"></i></span><span class="candle"><i class="flame"></i></span></span><span class="cake-tier cake-top"><span class="cake-icing"></span><span class="cake-cherry"></span></span><span class="cake-tier cake-bottom"><span class="cake-piping"></span><span class="cake-decoration">♡ &nbsp; ♡ &nbsp; ♡</span></span><span class="cake-plate"></span></span></button><p class="handwritten cake-instruction" id="cake-instruction">tap the cake. wish big. <span aria-hidden="true">↗</span></p><p id="cake-result" class="cake-result" role="status" hidden>Your wish is on its way. Here's to a beautiful year. ✨</p></div>
+        </div><a class="chapter-next" href="#heart">First, a little something I wanted to say. <span aria-hidden="true">↓</span></a>
+      </section>
+
+      <section id="heart" class="chapter heart-chapter" aria-labelledby="heart-title">
+        <div class="chapter-top"><p class="eyebrow">02 / A LETTER FROM ME</p><span class="handwritten">no big speech. just the honest bit.</span></div>
+        <div class="heart-layout"><div class="heart-margin"><span class="letter-postmark">DELIVERED<br>BY FRIENDSHIP<br><span aria-hidden="true">✧</span></span><p class="handwritten">some things deserve<br>to be written down.</p><span class="letter-address">TO MY SISTER BY HEART<br>FROM <span class="sender-name">Dharmin</span></span></div><article class="personal-letter"><span class="paper-tape" aria-hidden="true"></span><p class="eyebrow">A LITTLE NOTE, A LOT OF GRATITUDE</p><h2 id="heart-title">A friend. A sister.<br><em>My chosen family.</em></h2><div class="letter-story" id="letter-story" aria-live="polite"></div><button type="button" class="text-button letter-continue" id="letter-continue">Keep reading <span aria-hidden="true">↓</span></button><p class="letter-signoff" id="letter-signoff" hidden>Always in your corner,<br><span class="handwritten sender-name">Dharmin</span><span aria-hidden="true"> ♡</span></p></article></div>
+      </section>
+
+      <section id="memories" class="chapter memories-chapter" aria-labelledby="memories-title">
+        <div class="chapter-top"><p class="eyebrow">03 / LITTLE MOMENTS, BIG FEELINGS</p><span class="handwritten">the memory museum ♡</span></div>
+        <div class="section-heading"><div><h2 id="memories-title">A little scrapbook.<br> <em>A lot of us.</em></h2></div><p>Some things are too good to forget.<br> This is a little place to keep them.</p></div>
+        <!-- Original CSS scrapbook artwork is the intentional zero-photo state. -->
+        <div class="scrapbook-empty" id="scrapbook-empty">
+          <div class="scrapbook-lines" aria-hidden="true"></div>
+          <article class="scrapbook-polaroid"><span class="paper-tape" aria-hidden="true"></span><div class="flower-picture" aria-hidden="true"><span class="picture-sun"></span><span class="flower-stem"></span><span class="flower-leaf"></span><span class="daisy"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b></b></span><span class="picture-sparkle">✧</span></div><p class="handwritten">good things take growing.</p></article>
+          <article class="scrapbook-note"><span class="note-pin" aria-hidden="true"></span><span class="eyebrow">A NOTE TO KEEP</span><p>The good stuff<br>isn't always<br><em>photographed.</em></p><span class="note-heart" aria-hidden="true">♡</span></article>
+          <div class="scrapbook-ticket"><span>ADMIT TWO</span><strong>to all the little<br>moments ahead.</strong><span aria-hidden="true">✧ &nbsp; ♡ &nbsp; ✧</span></div>
+          <span class="scrapbook-doodle" aria-hidden="true">✳</span><p class="scrapbook-caption handwritten">a little space for our story ↗</p>
+        </div>
+        <p id="gallery-status" class="gallery-status" role="status" hidden></p>
+        <p id="gallery-errors" class="gallery-errors" role="status" hidden></p>
+        <div id="photo-gallery" class="photo-gallery" hidden></div><div class="memory-footer"><p class="gallery-footer">A collection with room to grow. <span aria-hidden="true">♡</span></p><button type="button" class="discovery-sticker sticker-flower" data-egg="pressed-flower" aria-label="Look closer at this pressed flower" aria-haspopup="dialog"><span aria-hidden="true">✳</span><span class="handwritten">a little thing to keep</span></button></div>
+      </section>
+
+      <section id="appreciation" class="chapter appreciation-chapter" aria-labelledby="appreciation-title">
+        <div class="chapter-top"><p class="eyebrow">04 / IN CASE NOBODY TOLD YOU TODAY</p><span class="handwritten">a few things worth keeping.</span></div>
+        <div class="appreciation-layout"><div class="appreciation-intro"><span class="appreciation-mark" aria-hidden="true">✳</span><h2 id="appreciation-title">Things that make<br><em>you, you.</em></h2><p id="appreciation-intro"></p><span class="handwritten">consider this your reminder board. ↗</span></div><div class="appreciation-notes" id="appreciation-notes"></div></div>
+      </section>
+
+      <section id="chaos" class="chapter chaos-chapter" aria-labelledby="sisterhood-title">
+        <div class="chapter-top"><p class="eyebrow">05 / DIFFERENT ROOTS. A SHARED BRANCH.</p><span class="handwritten">family comes in all kinds of ways.</span></div>
+        <div class="sisterhood-layout"><div><p class="eyebrow">THE KIND OF BOND YOU DON'T NEED TO EXPLAIN</p><h2 id="sisterhood-title">Sister <em>by heart.</em></h2><p class="sisterhood-subtitle" id="sisterhood-subtitle"></p><div class="sisterhood-lines" id="sisterhood-lines"></div></div><div class="kinship-card"><span class="paper-tape" aria-hidden="true"></span><span class="kinship-label">NO MATCHING FAMILY TREE REQUIRED</span><div class="kinship-illustration" aria-hidden="true"><span>friend</span><i></i><span>sister</span></div><p class="handwritten">some bonds get<br>their own little branch.</p><button type="button" class="discovery-sticker sticker-seal" data-egg="sister-seal" aria-label="Look closer at this little family seal" aria-haspopup="dialog"><span aria-hidden="true">♡</span></button></div></div>
+        <div class="section-heading investigation-heading"><div><p class="handwritten">and because family gets teasing privileges…</p><h3 id="chaos-title" class="investigation-title">A very serious investigation<br>into your <em>personality.</em></h3></div><p>Three entirely unserious case files.<br>Tap to uncover the allegations.</p></div>
+        <div id="friendship-cards" class="friendship-cards"></div>
+        <p class="chapter-aside">Entirely unserious allegations. Very serious appreciation.</p><div id="extra-friendship" class="extra-friendship" hidden></div>
+      <section id="quiz" class="quiz-chapter" aria-labelledby="quiz-title">
+        <div class="chapter-top"><p class="eyebrow">A BONUS PAGE / ABSOLUTELY NO QUALIFICATIONS REQUIRED</p><span class="quiz-stamp" aria-hidden="true">OFFICIALLY<br>UNOFFICIAL</span></div>
+        <div class="quiz-layout"><div class="quiz-introduction"><p class="handwritten">how well do you know me?</p><h2 id="quiz-title">The brother<br><em>exam.</em><span aria-hidden="true">↗</span></h2><p id="quiz-subtitle"></p><span class="quiz-disclaimer">No pressure. Your bestie status is safe.</span></div><div class="quiz-paper" id="quiz-paper"><div id="quiz-playing"><div class="quiz-progress-row"><span id="quiz-progress">QUESTION 01 / 03</span><span aria-hidden="true">✧</span></div><div class="quiz-progress-track"><span id="quiz-progress-bar"></span></div><h3 id="quiz-question" tabindex="-1"></h3><div class="quiz-answers" id="quiz-answers"></div><p class="quiz-feedback" id="quiz-feedback" role="status"></p><button type="button" class="button button-dark" id="quiz-next" disabled>Next question <span aria-hidden="true">→</span></button></div><div class="quiz-results" id="quiz-results" hidden><span class="result-rosette" aria-hidden="true">✳</span><p class="eyebrow">THE VERDICT IS IN</p><h3>Permanent<br><em>bestie status.</em></h3><p id="quiz-score"></p><p id="quiz-result-message"></p><button type="button" class="button button-dark" id="quiz-reset">Take the exam again <span aria-hidden="true">↻</span></button></div></div></div>
+      </section>
+      </section>
+
+      <section id="letters" class="chapter letters-chapter" aria-labelledby="letters-title">
+        <div class="chapter-top"><p class="eyebrow">06 / A LITTLE CARE PACKAGE</p><span class="handwritten">keep these for a rainy day.</span></div>
+        <div class="section-heading"><div><h2 id="letters-title">Open <em>when…</em></h2><p class="section-description">For the good days, the heavy days, and all the in-between days.</p></div><span class="letter-heading-doodle" aria-hidden="true">💌</span></div>
+        <div class="open-when-grid" id="open-when-grid"></div><p class="chapter-aside">Five tiny envelopes. An unlimited supply of being in your corner.</p>
+      </section>
+
+      <section id="finale" class="chapter finale-chapter" aria-labelledby="finale-title">
+        <div class="finale-stars" aria-hidden="true"><span>✧</span><span>✦</span><span>♡</span><span>✧</span><span>✦</span><span>♡</span></div><p class="eyebrow">07 / ONE LAST LITTLE THING</p><div class="finale-photo" id="finale-photo" hidden></div><button type="button" class="discovery-sticker sticker-star finale-rosette" data-egg="birthday-star" aria-label="Look closer at this lucky birthday star" aria-haspopup="dialog"><span aria-hidden="true">✧</span></button><p class="handwritten finale-prelude">here's to wonderfully, unapologetically you.</p><h2 id="finale-title"><span id="ending-heading">Happiest birthday</span>,<br><em class="recipient-name">birthday girl</em><span aria-hidden="true"> ♡</span></h2><div class="finale-messages" id="finale-messages"></div><button type="button" class="button button-primary" id="celebrate-button">A little more birthday magic <span aria-hidden="true">✧</span></button><button type="button" class="text-button replay-button" id="replay-button">Replay your little surprise <span aria-hidden="true">↻</span></button><p id="discovery-summary" class="discovery-summary"></p><a class="chapter-next" href="#birthday">Back to the first page <span aria-hidden="true">↑</span></a><footer class="gift-footer"><span>NOT BY BLOOD, BUT BY BOND. NOT JUST A FRIEND, BUT FAMILY.</span><p>Made with love by <span id="sender-signature">Dharmin Mistry</span> <span aria-hidden="true">♡</span></p><span id="site-title-footer">THE SISTER I GOT TO CHOOSE</span></footer>
+      </section>
+    </div>
+  </main>
+
+  <dialog class="note-dialog" id="note-dialog" aria-labelledby="note-title"><button type="button" class="dialog-close" data-close-dialog aria-label="Close this letter">×</button><span class="note-dialog-icon" id="note-icon" aria-hidden="true"></span><p class="eyebrow" id="note-eyebrow">A LITTLE NOTE, JUST FOR YOU</p><h2 id="note-title"></h2><p id="note-body"></p><p class="handwritten">Always in your corner. ♡</p><button type="button" class="text-button" data-close-dialog>Fold it up & keep it <span aria-hidden="true">↗</span></button></dialog>
+  <dialog class="discovery-dialog note-dialog" id="discovery-dialog" aria-labelledby="discovery-title"><button type="button" class="dialog-close" data-close-dialog aria-label="Close the little discoveries">×</button><p class="eyebrow">TUCKED BETWEEN THE PAGES</p><h2 id="discovery-title">The little things.</h2><p>There are a few tiny keepsakes in this book. Take a closer look at the stickers.</p><ul id="discovery-list" class="discovery-list"></ul><p class="handwritten">no rush. they're yours to find.</p></dialog>
+  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer"><button type="button" class="dialog-close" data-close-dialog aria-label="Close photo viewer">×</button><div class="lightbox-picture"><img id="lightbox-image" alt=""></div><p id="photo-view-status" class="photo-view-status" role="status" hidden></p><div class="lightbox-caption"><p id="lightbox-caption"></p><span id="lightbox-count" aria-live="polite"></span></div><div class="lightbox-controls"><button type="button" id="photo-prev" aria-label="Previous photo">←</button><button type="button" id="photo-next" aria-label="Next photo">→</button></div></dialog>
+  <div id="confetti-layer" class="confetti-layer" aria-hidden="true"></div>
+  <p id="audio-status" class="sr-only" role="status"></p>
+  <noscript><div class="noscript-note">This little surprise needs JavaScript for its interactive chapters. Please enable JavaScript and reopen this page.</div></noscript>
+</body>
+</html>

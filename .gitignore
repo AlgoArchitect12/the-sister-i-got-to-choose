@@ -1,0 +1,11 @@
+.playwright-mcp/
+
+# Local credentials and generated output never belong in the public gift.
+.env
+.env.*
+*.pem
+*.key
+node_modules/
+__pycache__/
+playwright-report/
+test-results/
