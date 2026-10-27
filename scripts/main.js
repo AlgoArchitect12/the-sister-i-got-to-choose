@@ -6,7 +6,7 @@
   const $ = (selector) => document.querySelector(selector);
   const $$ = (selector) => [...document.querySelectorAll(selector)];
   const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const name = config.recipientName?.trim();
+  const name = config.petName?.trim() || config.recipientName?.trim();
   const recipient = name && name !== "[HER NAME]" ? name : "birthday girl";
   const personalize = (text) => String(text).replaceAll("{recipient}", recipient).replaceAll("{sender}", config.senderName);
   const timers = new Set();
@@ -49,8 +49,14 @@
     }
   }
 
-  $$(".recipient-name").forEach((node) => { node.textContent = recipient; });
-  $$(".sender-name").forEach((node) => { node.textContent = config.senderName; });
+  $(".recipient-name").forEach((node) => { node.textContent = recipient; });
+  const realNameLabel = $("#recipient-real-name");
+  if (realNameLabel) {
+    realNameLabel.textContent = config.realName || "";
+    const realNameWrap = realNameLabel.closest(".recipient-real-name-wrap");
+    if (realNameWrap) realNameWrap.hidden = !config.realName;
+  }
+  $(".sender-name").forEach((node) => { node.textContent = config.senderName; });
   $("#sender-signature").textContent = config.senderSignature;
   $("[data-config='greeting']").textContent = config.greeting;
   $("#ending-heading").textContent = config.ending.heading;
@@ -65,7 +71,20 @@
   $("#wish-message").textContent = config.reveal.wish;
   const siteTitle = config.siteTitle?.trim() || "The Sister I Got to Choose";
   document.title = `${siteTitle} · A Birthday Keepsake`;
-  if (siteTitle !== "The Sister I Got to Choose") $("#cover-title").textContent = siteTitle;
+  const coverTitle = $("#cover-title");
+  if (Array.isArray(config.coverTitleLines) && config.coverTitleLines.length) {
+    coverTitle.classList.add("cover-title-custom");
+    coverTitle.replaceChildren(...config.coverTitleLines.map((line) => {
+      const text = typeof line === "string" ? line : line.text;
+      const titleLine = element("span", "", text);
+      if (typeof line !== "string" && line.emphasis) {
+        titleLine.replaceChildren(element("em", "", text));
+      }
+      return titleLine;
+    }));
+  } else if (siteTitle !== "The Sister I Got to Choose") {
+    coverTitle.textContent = siteTitle;
+  }
   $("#site-title-footer").textContent = siteTitle;
   $("#cover-message").textContent = personalize(config.intro.coverMessage);
   if (config.appreciation.heading !== "Things that make you, you.") $("#appreciation-title").textContent = config.appreciation.heading;
