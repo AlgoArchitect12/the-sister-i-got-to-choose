@@ -2,18 +2,30 @@
    These are example jokes and hypothetical quiz answers, not claims about her.
    All 14 supplied photographs are registered below. This gift has no soundtrack. */
 window.BIRTHDAY_CONFIG = {
-  siteTitle: "The Sister I Got to Choose",
-  recipientName: "[HER NAME]",
+  siteTitle: "Dee — My Chosen Sister",
+  recipientName: "Dee",
+  petName: "Dee",
+  realName: "Dhruti Karushkar",
+  coverTitleLines: [
+    { text: "The sister," },
+    { text: "bestest friend," },
+    { text: "crime partner," },
+    { text: "biggest supporter," },
+    { text: "and of course," },
+    { text: "the best part" },
+    { text: "of my life" },
+    { text: "I got to choose.", emphasis: true }
+  ],
   senderName: "Dharmin",
   senderSignature: "Dharmin Mistry",
   nickname: "sister by heart",
   greeting: "Happiest birthday",
 
   intro: {
-    coverMessage: "A little birthday keepsake, made just for you.",
+    coverMessage: "From a stranger to my bestest friend, crime partner, biggest supporter, and of course, the best part of my life.",
     lines: [
-      "Some people enter our lives as friends…",
-      "And somehow, they become family. ❤️"
+      "From a stranger to my bestest friend…",
+      "my crime partner, biggest supporter, and the best part of my life. ❤️"
     ]
   },
 
