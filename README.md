@@ -1,9 +1,9 @@
-# The sister I got to choose 💗
+# Dee — The Sister I Got to Choose 💗
 
 A birthday keepsake for a friend who feels like a sister. Built on the existing HTML, CSS, and vanilla JavaScript site; no installation, build step, account, or backend is needed.
 
 - **Public repository:** [AlgoArchitect12/the-sister-i-got-to-choose](https://github.com/AlgoArchitect12/the-sister-i-got-to-choose)
-- **GitHub Pages:** [The Sister I Got to Choose](https://algoarchitect12.github.io/the-sister-i-got-to-choose/)
+- **GitHub Pages:** [Dee’s Birthday Gift](https://algoarchitect12.github.io/the-sister-i-got-to-choose/)
 
 GitHub Pages is configured to publish the `main` branch from the repository root. See [tests/QA.md](tests/QA.md) for verification results and limits.
 
@@ -50,9 +50,9 @@ The seven chapters are the opening surprise and cake, a letter from me, our memo
 
 Edit **`scripts/config.js`** in a text editor. Keep the JavaScript quotes, commas, and brackets intact, then refresh the browser.
 
-- Set `siteTitle` to change the website title and cover wording.
-- Set `recipientName` to her name. `[HER NAME]` is deliberately unconfigured; the page uses a friendly fallback until you change it.
-- Set `senderName`, `senderSignature`, and `nickname` as desired.
+- Set `siteTitle` to change the browser/page title. `coverTitleLines` controls each line of the expanded scrapbook cover title, and `intro.coverMessage` controls the “from a stranger…” dedication.
+- The current recipient is configured as `Dee`, her pet name. `realName` is `Dhruti Karushkar`; `petName` controls how she is addressed throughout the experience.
+- Set `senderName`, `senderSignature`, and `nickname` as desired. `recipientName`, `petName`, and `realName` control her display names.
 - Change `intro.coverMessage`, `intro.lines`, `greeting`, `reveal.description`, and `reveal.wish` for the opening and birthday chapter.
 - Edit `friendshipCards`, `openWhen`, and `letter.lines` for the jokes, five notes, and personal letter.
 - Edit `appreciation.heading`, `appreciation.intro`, and `appreciation.notes` for the appreciation collection. Each note has a `title` and `message`.
@@ -171,3 +171,8 @@ git push origin main
 For other updates, stage their exact paths as well. Generated browser output and local `.env` files are excluded by `.gitignore`; they are not needed for the website.
 
 No credentials or environment variables belong in these files. GitHub Pages makes the published site and its assets accessible to visitors; only publish photographs and personal messages you are comfortable sharing. Keep a private local copy if the gift should remain private.
+
+
+## Personalization note
+
+The opening cover is personalized with this dedication: “From a stranger to my bestest friend, crime partner, biggest supporter, and of course, the best part of my life.” The expanded cover title and recipient display are configured for Dee. Since this repository and its GitHub Pages site are public, the name and all included photographs are visible to anyone with access to the site or repository.
