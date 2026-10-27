@@ -2,6 +2,11 @@
 
 A birthday keepsake for a friend who feels like a sister. Built on the existing HTML, CSS, and vanilla JavaScript site; no installation, build step, account, or backend is needed.
 
+- **Public repository:** [AlgoArchitect12/the-sister-i-got-to-choose](https://github.com/AlgoArchitect12/the-sister-i-got-to-choose)
+- **GitHub Pages:** [The Sister I Got to Choose](https://algoarchitect12.github.io/the-sister-i-got-to-choose/)
+
+GitHub Pages is configured to publish the `main` branch from the repository root. See [tests/QA.md](tests/QA.md) for verification results and limits.
+
 ## Preview
 
 Open `index.html` directly in a modern browser. All site paths are relative, so it also works in a GitHub Pages project subdirectory.
@@ -124,7 +129,7 @@ This is a photo-only gift: no soundtrack is added, audio remains disabled, and i
 - [ ] Replace the editable example jokes, quiz answers, letter, and appreciation notes with your own words.
 - [x] Place and register all 14 supplied photographs in `assets/images/photos/`.
 - [ ] Add your own captions or leave them empty.
-- [ ] Preview the gift, check every photo in the lightbox, then publish only when ready.
+- [ ] Preview future edits and check every photo in the lightbox before pushing them to `main`.
 
 ## Checks
 
@@ -142,13 +147,27 @@ See [tests/QA.md](tests/QA.md) for the completed browser checks and their limits
 
 `tests/browser-qa.js` and `tests/photo-qa.js` are entry functions for an available Playwright browser tool, not standalone Node.js runners. See the QA record for executed results. `tests/media-qa.js` is retained from the earlier audio-capable version and is not part of this photograph-only task. No packages or build tools are added to the gift.
 
-## Publish with GitHub Pages
+## Update the GitHub Pages site
 
-Publication is a separate manual step; this project has not been committed, pushed, or deployed.
+The repository is public. Its Pages source is **`main` → `/ (root)`**, with `index.html` at that root. `.nojekyll` keeps this a plain static site; no framework, installation, or build command is required. Future pushes to `main` trigger GitHub Pages publication.
 
-1. Create a GitHub repository for this gift and upload the project files, with `index.html` at the repository root.
-2. In the repository, open **Settings → Pages**.
-3. Choose **Deploy from a branch**, select your branch and **/ (root)**, then save.
-4. Wait for GitHub's deployment and open the URL shown in Pages settings.
+1. Edit the intended content in `scripts/config.js`, or replace the intended photograph in `assets/images/photos/` and update its manifest entry as needed.
+2. Open `index.html` or use the local preview server above. Check the changed content and photographs.
+3. Run `node tests/check.mjs`.
+4. Review `git status --short` and `git diff`. Stage only the exact files you intend to publish, commit, and push to `main`.
+5. Wait for the Pages deployment to finish in the repository's **Actions** tab, then check the [public website](https://algoarchitect12.github.io/the-sister-i-got-to-choose/).
+
+For a captions or messages update that changes only the configuration:
+
+```sh
+node tests/check.mjs
+git status --short
+git diff -- scripts/config.js
+git add -- scripts/config.js
+git commit -m "Update birthday messages and captions"
+git push origin main
+```
+
+For other updates, stage their exact paths as well. Generated browser output and local `.env` files are excluded by `.gitignore`; they are not needed for the website.
 
 No credentials or environment variables belong in these files. GitHub Pages makes the published site and its assets accessible to visitors; only publish photographs and personal messages you are comfortable sharing. Keep a private local copy if the gift should remain private.

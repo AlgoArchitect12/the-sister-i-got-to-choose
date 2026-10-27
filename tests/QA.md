@@ -1,4 +1,33 @@
-# Photograph integration verification — 27 October 2026
+# Public GitHub Pages verification — 27 October 2026
+
+## Current public deployment
+
+- Repository: [AlgoArchitect12/the-sister-i-got-to-choose](https://github.com/AlgoArchitect12/the-sister-i-got-to-choose), verified **PUBLIC**, with `main` as the default branch.
+- Website: [The Sister I Got to Choose](https://algoarchitect12.github.io/the-sister-i-got-to-choose/).
+- GitHub Pages source: `main`, `/ (root)`, branch-based publishing (`legacy`), with HTTPS enforced and `.nojekyll` for the static files.
+- The initial application deployment was verified as **built**, with no build error, at commit `c22d5e01b27e2bbe3406924775e55085c4a0d154`. The subsequent commit updates publication documentation only.
+
+### Publication audit
+
+The Birthday directory had no Git repository, parent repository, remote, or prior Git history. A dedicated repository was initialized inside Birthday, and the preferred repository name was confirmed unused before creation. Its remote was verified before the push. The 32 tracked files include the website, documentation, source tests, `.gitkeep` files, and all 14 intended photographs. Generated `.playwright-mcp/` screenshots/logs were excluded. The public-file audit found no credential-pattern matches or private-key files in the intended upload. `.gitignore` also excludes local environment files, keys, dependencies, and generated test output. Public commits use the authenticated account's GitHub noreply email.
+
+### Live checks actually executed
+
+- `node tests/check.mjs`: **PASS**, including all 14 unique photo registrations matching the real filenames and all existing structural checks.
+- GitHub API: repository visibility **public**, default branch **main**, Pages public at the URL above, source **main / (root)**, HTTPS enforced, deployment **built**, and no build error.
+- Public HTTP requests: **200** for the homepage, `styles/main.css`, `scripts/config.js`, `scripts/main.js`, and every image from `photo-01.jpg` through `photo-14.jpg`. Image response sizes match all 14 local originals.
+- Retained `tests/browser-qa.js` executed against the actual public URL, substituting only the test runner's localhost base: **PASS**. Seven chapters, 14 decoded photographs, four appreciation notes, six letter paragraphs, five letters, three quiz questions, all three discoveries, seven navigation links, opening/skip timers, modal focus handling, cake, confetti, resets, and replay passed. No JavaScript errors, failed responses, failed requests, or unexpected media requests occurred.
+- Retained `tests/photo-qa.js` executed against the actual public URL with the same base substitution: **PASS**. All 14 original photographs were individually opened, decoded at their registered dimensions, and reached in full lightbox order with previous/next wraparound, keyboard navigation, close/focus restoration, uncropped aspect ratios, featured finale photograph, lower gallery rows, and replay. No JavaScript errors, image failures, or audio requests occurred.
+- Live responsive browser checks passed at 320, 375, 390, 768, 1024, and 1440 pixels. The isolated missing/unreadable/empty-manifest fixtures also passed without altering the deployed files.
+- The live HTTPS website was opened in the browser.
+
+### Remaining limits
+
+The recipient name and optional captions remain editable placeholders. Physical devices, Safari, Firefox, and assistive-technology software were not tested. Mobile checks used resized Chromium viewports. The historical audio suite was not executed because this is a photo-only gift.
+
+## Earlier photograph integration record
+
+The following record was written before publication; its statements that nothing had been published describe that earlier stage.
 
 ## Current photo-only version
 
