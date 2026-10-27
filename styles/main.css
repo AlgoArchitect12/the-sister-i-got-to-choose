@@ -70,6 +70,9 @@ body:not(.intro-active) .header-note { display: none; }
 .cover-copy > .eyebrow > span { font-size: 1.1rem; color: var(--gold); }
 h1 { font-size: clamp(3.9rem, 6.5vw, 7rem); line-height: 1.04; margin-bottom: 28px; letter-spacing: -.065em; overflow-wrap: break-word; }
 h1 em { display: inline; }
+.cover-title-custom { font-size: clamp(2.05rem, 4.1vw, 4.25rem); line-height: 1.02; margin-bottom: 22px; letter-spacing: -.055em; max-width: 660px; }
+.cover-title-custom > span { display: block; }
+.cover-title-custom > span > em { display: inline; }
 .cover-description { font-size: .86rem; color: var(--muted); line-height: 1.9; margin-bottom: 25px; }
 .cover-dedication { display: flex; align-items: center; gap: 14px; font: .91rem var(--hand); }
 .little-line { width: 32px; height: 1px; background: var(--berry); }
